@@ -1,0 +1,30 @@
+
+feriado = record  {
+    sigla_pais: string;
+    data: date;
+    nome: string;
+}
+
+pais = record  {
+    sigla: string;
+    nome: string;
+}
+
+sincronizacao = interface +c {
+    static baixarTudo(listener: sincronizacao_listener);
+}
+
+sincronizacao_listener = interface +j +o {
+    sucesso();
+    falha(mensagem: string);
+}
+
+feriado_repository = interface +c {
+    static find_all(): list<feriado>;
+    static find_by_pais(sigla_pais: string): list<feriado>;
+}
+
+pais_repository = interface +c {
+    static find_all(): list<pais>;
+    static get_by_sigla(sigla_pais: string): pais;
+}

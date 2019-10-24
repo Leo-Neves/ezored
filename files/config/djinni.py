@@ -9,6 +9,7 @@ def run(proj_path, target_name, params):
             "app-helpers",
             "datetime",
             "file-helper",
+            "holiday",
             "http-client",
             "logger",
             "shared-data",
