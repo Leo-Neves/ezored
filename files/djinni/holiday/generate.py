@@ -10,25 +10,25 @@ import subprocess
 djinni_file = "proj.djinni"
 
 # cpp configuration
-cpp_namespace = "ezored::helpers"
-cpp_include_prefix = "ezored/helpers/"
+cpp_namespace = "ezored::holiday"
+cpp_include_prefix = "ezored/holiday/"
 cpp_out = "generated-src/cpp/{0}".format(cpp_include_prefix)
 
 # objc configuration
-objc_prefix = "EZRHelpers"
+objc_prefix = "Holiday"
 objc_out = "generated-src/objc/{0}".format(cpp_include_prefix)
 objc_include_cpp_prefix = "{0}".format(cpp_include_prefix)
 objc_include_prefix = "{0}".format(cpp_include_prefix)
 
 # java configuration
-java_package = "com.ezored.helpers"
+java_package = "com.ezored.holiday"
 java_out = "generated-src/java/{0}".format(java_package.replace(".", "/"))
 java_parcelable = "true"
 
 # jni configuration
 jni_out = "generated-src/jni/{0}".format(java_package.replace(".", "/"))
-jni_class = "EZRHelpersFooBar"
-jni_file = "EZRHelpersFooBar"
+jni_class = "HolidayFooBar"
+jni_file = "HolidayFooBar"
 jni_include_cpp_prefix = "{0}".format(cpp_include_prefix)
 jni_include_prefix = "{0}/".format(java_package.replace(".", "/"))
 
