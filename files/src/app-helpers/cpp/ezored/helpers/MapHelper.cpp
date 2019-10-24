@@ -4,15 +4,36 @@
 #include "rapidjson/stringbuffer.h"
 #include "rapidjson/writer.h"
 
+using std::string;
+using std::unordered_map;
+using rapidjson::StringBuffer;
+using rapidjson::Writer;
+using rapidjson::SizeType;
+using rapidjson::Document;
+
 namespace ezored
 {
 namespace helpers
 {
 
-std::string MapHelper::toJsonString(const std::unordered_map<std::string, std::string> &data)
+Document MapHelper::toJson(const string &data){
+    Document json;
+    json.Parse(data.c_str());
+    return json;
+}
+
+string MapHelper::toString(const Document &json){
+    StringBuffer buffer;
+    buffer.Clear();
+    Writer<StringBuffer> writer(buffer);
+    json.Accept(writer);
+    return string(buffer.GetString());
+}
+
+string MapHelper::toJsonString(const unordered_map<string, string> &data)
 {
-    rapidjson::StringBuffer s;
-    rapidjson::Writer<rapidjson::StringBuffer> writer(s);
+    StringBuffer s;
+    Writer<StringBuffer> writer(s);
 
     writer.StartObject();
 
@@ -27,11 +48,11 @@ std::string MapHelper::toJsonString(const std::unordered_map<std::string, std::s
     return s.GetString();
 }
 
-std::unordered_map<std::string, std::string> MapHelper::fromJsonString(const std::string &data)
+unordered_map<string, string> MapHelper::fromJsonString(const string &data)
 {
-    auto map = std::unordered_map<std::string, std::string>{};
+    auto map = unordered_map<string, string>{};
 
-    rapidjson::Document json;
+    Document json;
     json.Parse(data.c_str());
 
     if (json.IsObject())
@@ -45,7 +66,7 @@ std::unordered_map<std::string, std::string> MapHelper::fromJsonString(const std
     return map;
 }
 
-std::string MapHelper::getValue(const std::string &key, const std::unordered_map<std::string, std::string> &data, const std::string &defaultValue)
+string MapHelper::getValue(const string &key, const unordered_map<string, string> &data, const string &defaultValue)
 {
     auto it = data.find(key);
 
@@ -57,5 +78,46 @@ std::string MapHelper::getValue(const std::string &key, const std::unordered_map
     return it->second;
 }
 
+string MapHelper::getString(const string key, const Document &data)
+{
+    char cstr[key.size() + 1];
+	strcpy(cstr, key.c_str());
+    if (data.IsObject())
+        if (data.GetObject()[cstr].IsString())
+            return string(data.GetObject()[cstr].GetString());
+	return "";
+}
+
+int MapHelper::getInt(const string &key, const Document &data)
+{
+    char cstr[key.size() + 1];
+	strcpy(cstr, key.c_str());
+    if (data.IsObject())
+        if (data.GetObject()[cstr].IsInt())
+            return data.GetObject()[cstr].GetInt();
+	return 0;
+}
+
+bool MapHelper::getBool(const string &key, const Document &data)
+{
+    char cstr[key.size() + 1];
+	strcpy(cstr, key.c_str());
+    if (data.IsObject())
+        if (data.GetObject()[cstr].IsBool())
+            return data.GetObject()[cstr].GetBool();
+	return false;
+}
+
+double MapHelper::getDouble(const string &key, const Document &data)
+{
+    char cstr[key.size() + 1];
+	strcpy(cstr, key.c_str());
+    if (data.IsObject())
+        if (data.GetObject()[cstr].IsDouble())
+            return data.GetObject()[cstr].GetDouble();
+	return 0;
+}
+
 } // namespace helpers
 } // namespace ezored
+

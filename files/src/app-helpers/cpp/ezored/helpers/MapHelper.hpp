@@ -1,7 +1,16 @@
 #pragma once
 
+#include <iostream>
+#include <sstream>
 #include <string>
 #include <unordered_map>
+#include <vector>
+#include "rapidjson/document.h"
+
+using std::string;
+using std::unordered_map;
+using std::vector;
+using rapidjson::Document;
 
 namespace ezored
 {
@@ -13,10 +22,17 @@ class MapHelper
 public:
     virtual ~MapHelper() {}
 
-    static std::string toJsonString(const std::unordered_map<std::string, std::string> &data);
-    static std::unordered_map<std::string, std::string> fromJsonString(const std::string &data);
-    static std::string getValue(const std::string &key, const std::unordered_map<std::string, std::string> &data, const std::string &defaultValue);
+    static Document toJson(const string &data);
+    static string toString(const Document &json);
+    static string toJsonString(const unordered_map<string, string> &data);
+    static unordered_map<string, string> fromJsonString(const string &data);
+    static string getValue(const string &key, const unordered_map<string, string> &data, const string &defaultValue);
+    static string getString(const string key, const Document &data);
+    static int getInt(const string &key, const Document &data);
+    static double getDouble(const string &key, const Document &data);
+    static bool getBool(const string &key, const Document &data);
 };
 
 } // namespace helpers
 } // namespace ezored
+
