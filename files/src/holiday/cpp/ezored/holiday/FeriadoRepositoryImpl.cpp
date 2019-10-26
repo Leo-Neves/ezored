@@ -54,7 +54,7 @@ namespace holiday{
         auto application = std::static_pointer_cast<core::ApplicationCoreImpl>(core::ApplicationCore::shared());
         auto db = application->getDB();
         SQLite::Statement query(*db, sql);
-        query.bind(":countryCode", siglaPais);
+        query.bind(":siglaPais", siglaPais);
 
         auto feriados = std::vector<Feriado>{};
         while (query.executeStep()){
@@ -81,6 +81,14 @@ namespace holiday{
 
         return feriados;
     }
+
+    void FeriadoRepositoryImpl::deletarTudo(){
+            auto sql = "DELETE FROM FERIADO";
+            auto application = std::static_pointer_cast<core::ApplicationCoreImpl>(core::ApplicationCore::shared());
+            auto db = application->getDB();
+            SQLite::Statement query(*db, sql);
+            query.exec();
+        }
 
 }
 }

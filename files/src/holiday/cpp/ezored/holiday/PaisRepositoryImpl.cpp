@@ -81,5 +81,13 @@ namespace ezored{
             return paises;
         }
 
+        void PaisRepositoryImpl::deletarTudo(){
+            auto sql = "DELETE FROM PAIS";
+            auto application = std::static_pointer_cast<core::ApplicationCoreImpl>(core::ApplicationCore::shared());
+            auto db = application->getDB();
+            SQLite::Statement query(*db, sql);
+            query.exec();
+        }
+
     }
 }

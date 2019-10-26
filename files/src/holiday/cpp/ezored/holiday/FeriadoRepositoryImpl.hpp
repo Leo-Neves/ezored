@@ -21,6 +21,7 @@ class FeriadoRepositoryImpl : FeriadoRepository
         static void salvar(std::string json);
         static void salvar(Feriado feriado);
         static void salvarTudo(std::string json);
+        static void deletarTudo();
 };
 
 } // namespace systemservices
