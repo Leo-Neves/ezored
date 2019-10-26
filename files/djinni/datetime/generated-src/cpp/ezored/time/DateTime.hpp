@@ -13,6 +13,10 @@ class DateTime {
 public:
     virtual ~DateTime() {}
 
+    static std::chrono::system_clock::time_point getDateTimeFromStringFormat(const std::string & value, const std::string & dateFormat);
+
+    static std::string getStringFromDateTimeFormat(const std::chrono::system_clock::time_point & value, const std::string & dateFormat);
+
     static std::chrono::system_clock::time_point getDateTimeFromString(const std::string & value);
 
     static std::string getStringFromDateTime(const std::chrono::system_clock::time_point & value);

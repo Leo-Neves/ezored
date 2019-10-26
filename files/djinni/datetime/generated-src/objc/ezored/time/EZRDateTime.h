@@ -6,6 +6,12 @@
 
 @interface EZRDateTime : NSObject
 
++ (nonnull NSDate *)getDateTimeFromStringFormat:(nonnull NSString *)value
+                                     dateFormat:(nonnull NSString *)dateFormat;
+
++ (nonnull NSString *)getStringFromDateTimeFormat:(nonnull NSDate *)value
+                                       dateFormat:(nonnull NSString *)dateFormat;
+
 + (nonnull NSDate *)getDateTimeFromString:(nonnull NSString *)value;
 
 + (nonnull NSString *)getStringFromDateTime:(nonnull NSDate *)value;

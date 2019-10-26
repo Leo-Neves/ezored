@@ -9,10 +9,10 @@
 #include "ezored/net/http/HttpRequestParam.hpp"
 #include "ezored/net/http/HttpResponse.hpp"
 
-#include "ezored/agricola/FeriadoRepositoryImpl.hpp"
-#include "ezored/agricola/SyncFeriadosImpl.hpp"
-#include "ezored/agricola/Pais.hpp"
-#include "ezored/agricola/SyncListener.hpp"
+#include "ezored/holiday/FeriadoRepositoryImpl.hpp"
+#include "ezored/holiday/SincronizacaoImpl.hpp"
+#include "ezored/holiday/Pais.hpp"
+#include "ezored/holiday/SincronizacaoListener.hpp"
 #include <string>
 
 namespace ezored
@@ -23,11 +23,11 @@ namespace agricola
     using namespace ezored::core;
     using namespace ezored::net::http;
 
-    void SyncFeriados::baixarTudo(const std::shared_ptr<SyncListener> & listener){
+    void Sincronizacao::baixarTudo(const std::shared_ptr<SincronizacaoListener> & listener){
         
     }
 
-    void SyncFeriados::baixarPais(const std::string & sigla, const std::shared_ptr<SyncListener> & listener){
+    void SincronizacaoImpl::baixarPais(const std::string & sigla, const std::shared_ptr<SincronizacaoListener> & listener){
         auto application = std::static_pointer_cast<ApplicationCoreImpl>(ApplicationCore::shared());
 
         auto httpHeaders = application->getDefaultHttpRequestHeaders();

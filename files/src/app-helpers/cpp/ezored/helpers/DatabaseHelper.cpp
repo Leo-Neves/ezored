@@ -73,6 +73,18 @@ void DatabaseHelper::migrateDatabase(std::shared_ptr<SQLite::Database> db)
         }
     }
 
+    newDbVersion = 2;
+
+    if (dbVersion < newDbVersion) {
+        if (canMigrateToVersion(newDbVersion)) {
+            db->exec("CREATE table PAIS (sigla text primary key, nome text)");
+            db->exec("CREATE table FERIADO (nome text, sigla_pais text, data text)");
+            db->exec("PRAGMA user_version = " + std::to_string(newDbVersion));
+        } else {
+            Logger::shared()->d("Database migration ignore version: " + std::to_string(newDbVersion));
+        }
+    }
+
     // version 2
     /*
     newDbVersion = 2;

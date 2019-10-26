@@ -7,6 +7,18 @@ import java.util.Date;
 import java.util.concurrent.atomic.AtomicBoolean;
 
 public abstract class DateTime {
+    public static Date getDateTimeFromStringFormat(String value, String dateFormat)
+    {
+        return CppProxy.getDateTimeFromStringFormat(value,
+                                                    dateFormat);
+    }
+
+    public static String getStringFromDateTimeFormat(Date value, String dateFormat)
+    {
+        return CppProxy.getStringFromDateTimeFormat(value,
+                                                    dateFormat);
+    }
+
     public static Date getDateTimeFromString(String value)
     {
         return CppProxy.getDateTimeFromString(value);
@@ -69,6 +81,10 @@ public abstract class DateTime {
             _djinni_private_destroy();
             super.finalize();
         }
+
+        public static native Date getDateTimeFromStringFormat(String value, String dateFormat);
+
+        public static native String getStringFromDateTimeFormat(Date value, String dateFormat);
 
         public static native Date getDateTimeFromString(String value);
 
