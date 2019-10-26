@@ -30,6 +30,24 @@ static_assert(__has_feature(objc_arc), "Djinni requires ARC to be enabled for th
     return self;
 }
 
++ (nonnull NSDate *)getDateTimeFromStringFormat:(nonnull NSString *)value
+                                     dateFormat:(nonnull NSString *)dateFormat {
+    try {
+        auto objcpp_result_ = ::ezored::time::DateTime::getDateTimeFromStringFormat(::djinni::String::toCpp(value),
+                                                                                    ::djinni::String::toCpp(dateFormat));
+        return ::djinni::Date::fromCpp(objcpp_result_);
+    } DJINNI_TRANSLATE_EXCEPTIONS()
+}
+
++ (nonnull NSString *)getStringFromDateTimeFormat:(nonnull NSDate *)value
+                                       dateFormat:(nonnull NSString *)dateFormat {
+    try {
+        auto objcpp_result_ = ::ezored::time::DateTime::getStringFromDateTimeFormat(::djinni::Date::toCpp(value),
+                                                                                    ::djinni::String::toCpp(dateFormat));
+        return ::djinni::String::fromCpp(objcpp_result_);
+    } DJINNI_TRANSLATE_EXCEPTIONS()
+}
+
 + (nonnull NSDate *)getDateTimeFromString:(nonnull NSString *)value {
     try {
         auto objcpp_result_ = ::ezored::time::DateTime::getDateTimeFromString(::djinni::String::toCpp(value));

@@ -9,17 +9,23 @@ namespace ezored
 namespace time
 {
 
-std::chrono::system_clock::time_point DateTime::getDateTimeFromString(const std::string &value)
-{
+std::chrono::system_clock::time_point DateTime::getDateTimeFromString(const std::string &value){
+    return DateTime::getDateTimeFromStringFormat(value, "%F %T");
+}
+
+std::chrono::system_clock::time_point DateTime::getDateTimeFromStringFormat(const std::string &value, const std::string &dateFormat){
     std::chrono::system_clock::time_point dt;
     std::stringstream ss{value};
-    ss >> date::parse("%F %T", dt);
+    ss >> date::parse(dateFormat, dt);
     return date::floor<std::chrono::seconds>(dt);
 }
 
-std::string DateTime::getStringFromDateTime(const std::chrono::system_clock::time_point &value)
-{
-    return date::format("%F %T", date::floor<std::chrono::seconds>(value));
+std::string DateTime::getStringFromDateTime(const std::chrono::system_clock::time_point &value){
+    return DateTime::getStringFromDateTimeFormat(value, "%F %T");
+}
+
+std::string DateTime::getStringFromDateTimeFormat(const std::chrono::system_clock::time_point &value, const std::string &dateFormat){
+    return date::format(dateFormat, date::floor<std::chrono::seconds>(value));
 }
 
 std::string DateTime::getCurrentDateTimeAsString()
