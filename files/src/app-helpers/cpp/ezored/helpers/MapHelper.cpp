@@ -1,4 +1,5 @@
 #include "MapHelper.hpp"
+#include "ezored/time/DateTime.hpp"
 
 #include "rapidjson/document.h"
 #include "rapidjson/stringbuffer.h"
@@ -116,6 +117,18 @@ double MapHelper::getDouble(const string &key, const Document &data)
         if (data.GetObject()[cstr].IsDouble())
             return data.GetObject()[cstr].GetDouble();
 	return 0;
+}
+
+std::chrono::system_clock::time_point MapHelper::getDate(const string &key, const Document &data, const string &dateFormat){
+    char cstr[key.size() + 1];
+	strcpy(cstr, key.c_str());
+    if (data.IsObject())
+        if (data.GetObject()[cstr].IsString()){
+            string dateString = string(data.GetObject()[cstr].GetString());
+            return time::DateTime::getDateTimeFromStringFormat(dateString, dateFormat);
+        }
+    std::chrono::system_clock::time_point date;
+	return date;
 }
 
 } // namespace helpers

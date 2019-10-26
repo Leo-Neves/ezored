@@ -14,11 +14,11 @@
 #include <memory>
 
 namespace ezored{
-    namespace agricola{
+    namespace holiday{
 
         void PaisRepositoryImpl::salvar(std::string json){
             Pais pais = PaisParser::parseJsonParaObjeto(json);
-            PaisRepositoryImpl::salvar(feriado);
+            PaisRepositoryImpl::salvar(pais);
         }
 
         void PaisRepositoryImpl::salvar(Pais pais){
@@ -47,7 +47,7 @@ namespace ezored{
             }
         }
 
-        Pais PaisRepository::getBySigla(std::string siglaPais){
+        Pais PaisRepository::getBySigla(const std::string &siglaPais){
             auto sql = "SELECT * FROM PAIS where sigla = :siglaPais LIMIT 1";
             auto application = std::static_pointer_cast<core::ApplicationCoreImpl>(core::ApplicationCore::shared());
             auto db = application->getDB();
@@ -61,7 +61,7 @@ namespace ezored{
                 return pais;
             }
 
-            return PaisParser::criarPais();
+            return PaisParser::createPais();
         }
 
         std::vector<Pais> PaisRepository::findAll(){

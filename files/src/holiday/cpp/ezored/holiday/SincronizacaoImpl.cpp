@@ -17,7 +17,7 @@
 
 namespace ezored
 {
-namespace agricola
+namespace holiday
 {
     using namespace ezored::helpers;
     using namespace ezored::core;
@@ -56,7 +56,7 @@ namespace agricola
             }
         }else{
             if (listener!=nullptr){
-            listener->erro(httpResponse.body);}
+            listener->falha(httpResponse.body);}
         }
     }
 }

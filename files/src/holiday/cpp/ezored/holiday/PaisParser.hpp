@@ -16,7 +16,7 @@ class PaisParser
     public: 
         virtual ~PaisParser() {}
         static Pais parseJsonParaObjeto(std::string json);
-        static Pais parseCursorParaObjeto(SQLite::Statement query);
+        static Pais parseCursorParaObjeto(SQLite::Statement &query);
         static std::string parseObjetoParaJson(Pais pais);
         static Pais createPais();
 };

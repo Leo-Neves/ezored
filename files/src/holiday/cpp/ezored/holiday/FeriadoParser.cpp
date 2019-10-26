@@ -12,10 +12,14 @@
 #include <cstddef>
 #include <memory>
 
-namespace ezored{
-namespace agricola{
+using ezored::holiday::Feriado;
+using ezored::holiday::FeriadoParser;
+using ezored::helpers::MapHelper;
 
-    Feriado FeriadoParser::parseJsonParaObjeto(std::string json){
+namespace ezored{
+namespace holiday{
+
+    Feriado FeriadoParser::parseJsonParaObjeto(std::string &json){
         rapidjson::Document jsonFeriado = MapHelper::toJson(json);
         if (!jsonFeriado.IsNull() && jsonFeriado.IsObject()){
             std::string siglaPais = MapHelper::getString("countryCode", jsonFeriado);
@@ -26,17 +30,17 @@ namespace agricola{
         return FeriadoParser::createFeriado();
     }
 
-    Feriado FeriadoParser::parseCursorParaObjeto(SQLite::Statement query){
+    Feriado FeriadoParser::parseCursorParaObjeto(SQLite::Statement &row){
         auto feriado = FeriadoParser::createFeriado();
         feriado.siglaPais = row.getColumn("sigla_pais").getString();
         feriado.nome = row.getColumn("nome").getString();
         std::string dataString = row.getColumn("data").getString();
-        feriado.data = DateTime::getDateTimeFromStringFormat(dataString, "%F");
+        feriado.data = time::DateTime::getDateTimeFromStringFormat(dataString, "%F");
         return feriado;
     }
 
     Feriado FeriadoParser::createFeriado(){
-        return Feriado{"", DateTime::getCurrentDateTime(), ""};
+        return Feriado{"", time::DateTime::getCurrentDateTime(), ""};
     }
 
 }

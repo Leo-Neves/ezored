@@ -2,7 +2,7 @@ from conans import ConanFile, CMake
 
 
 class TargetConan(ConanFile):
-    name = "macos_app"
+    name = "macos_app_test"
     version = "1.0.0"
     settings = "os", "compiler", "build_type", "arch"
     options = {"shared": [True, False], "fPIC": [True, False]}

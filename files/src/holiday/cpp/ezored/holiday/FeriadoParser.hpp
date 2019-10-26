@@ -6,6 +6,8 @@
 #include <vector>
 #include <string>
 
+using ezored::holiday::Feriado;
+
 namespace ezored
 {
 namespace holiday
@@ -15,8 +17,8 @@ class FeriadoParser
 {
     public: 
         virtual ~FeriadoParser() {}
-        static Feriado parseJsonParaObjeto(std::string json);
-        static Feriado parseCursorParaObjeto(SQLite::Statement query);
+        static Feriado parseJsonParaObjeto(std::string &json);
+        static Feriado parseCursorParaObjeto(SQLite::Statement &query);
         static Feriado createFeriado();
 };
 

@@ -7,6 +7,8 @@
 #include <vector>
 #include <string>
 
+using ezored::holiday::Feriado;
+
 namespace ezored
 {
 namespace holiday

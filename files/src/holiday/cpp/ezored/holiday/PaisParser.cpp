@@ -13,8 +13,10 @@
 #include <cstddef>
 #include <memory>
 
+using ezored::helpers::MapHelper;
+
 namespace ezored{
-namespace agricola{
+namespace holiday{
 
     Pais PaisParser::parseJsonParaObjeto(std::string json){
         rapidjson::Document jsonPais = MapHelper::toJson(json);
@@ -26,7 +28,7 @@ namespace agricola{
         return PaisParser::createPais();
     }
 
-    Pais PaisParser::parseCursorParaObjeto(SQLite::Statement query){
+    Pais PaisParser::parseCursorParaObjeto(SQLite::Statement &row){
         auto pais = PaisParser::createPais();
         pais.sigla = row.getColumn("sigla").getString();
         pais.nome = row.getColumn("nome").getString();

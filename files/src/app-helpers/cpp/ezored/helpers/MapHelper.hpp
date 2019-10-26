@@ -31,6 +31,7 @@ public:
     static int getInt(const string &key, const Document &data);
     static double getDouble(const string &key, const Document &data);
     static bool getBool(const string &key, const Document &data);
+    static std::chrono::system_clock::time_point getDate(const string &key, const Document &data, const string &dateFormat);
 };
 
 } // namespace helpers

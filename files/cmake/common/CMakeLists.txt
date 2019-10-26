@@ -7,6 +7,7 @@ set(PROJECT_HEADER_SEARCH_PATHS
     "${PROJECT_ROOT_PATH}/files/djinni/app-system-services/generated-src/cpp"
     "${PROJECT_ROOT_PATH}/files/djinni/app-helpers/generated-src/cpp"
 
+    "${PROJECT_ROOT_PATH}/files/djinni/holiday/generated-src/cpp"
     "${PROJECT_ROOT_PATH}/files/djinni/http-client/generated-src/cpp"
     "${PROJECT_ROOT_PATH}/files/djinni/logger/generated-src/cpp"
     "${PROJECT_ROOT_PATH}/files/djinni/datetime/generated-src/cpp"
@@ -21,6 +22,7 @@ set(PROJECT_HEADER_SEARCH_PATHS
     "${PROJECT_ROOT_PATH}/files/src/app-system-services/cpp"
     "${PROJECT_ROOT_PATH}/files/src/app-helpers/cpp"
 
+    "${PROJECT_ROOT_PATH}/files/src/holiday/cpp"
     "${PROJECT_ROOT_PATH}/files/src/http-client/cpp"
     "${PROJECT_ROOT_PATH}/files/src/logger/cpp"
     "${PROJECT_ROOT_PATH}/files/src/datetime/cpp"
@@ -36,6 +38,9 @@ set(PROJECT_HEADER_SEARCH_PATHS
 set(PROJECT_LIBRARY_SEARCH_PATHS "" CACHE INTERNAL "")
 
 # Header files
+file(GLOB H_FILES_HOLIDAY_LIB "${PROJECT_ROOT_PATH}/files/djinni/holiday/generated-src/cpp/ezored/holiday/*.hpp")
+file(GLOB H_FILES_HOLIDAY_LIB_IMPL "${PROJECT_ROOT_PATH}/files/src/holiday/cpp/ezored/holiday/*.hpp")
+
 file(GLOB H_FILES_APP_DOMAIN_LIB "${PROJECT_ROOT_PATH}/files/djinni/app-domain/generated-src/cpp/ezored/domain/*.hpp")
 file(GLOB H_FILES_APP_DOMAIN_LIB_IMPL "${PROJECT_ROOT_PATH}/files/src/app-domain/cpp/ezored/domain/*.hpp")
 
@@ -73,6 +78,9 @@ file(GLOB H_FILES_SHARED_DATA_LIB "${PROJECT_ROOT_PATH}/files/djinni/shared-data
 file(GLOB H_FILES_SHARED_DATA_LIB_IMPL "${PROJECT_ROOT_PATH}/files/src/shared-data/cpp/ezored/data/SharedData*.hpp")
 
 # Source files
+file(GLOB S_FILES_HOLIDAY_LIB "${PROJECT_ROOT_PATH}/files/djinni/holiday/generated-src/cpp/ezored/holiday/*.cpp")
+file(GLOB S_FILES_HOLIDAY_LIB_IMPL "${PROJECT_ROOT_PATH}/files/src/holiday/cpp/ezored/holiday/*.cpp")
+
 file(GLOB S_FILES_APP_DOMAIN_LIB "${PROJECT_ROOT_PATH}/files/djinni/app-domain/generated-src/cpp/ezored/domain/*.cpp")
 file(GLOB S_FILES_APP_DOMAIN_LIB_IMPL "${PROJECT_ROOT_PATH}/files/src/app-domain/cpp/ezored/domain/*.cpp")
 
@@ -112,6 +120,8 @@ file(GLOB S_FILES_SHARED_DATA_LIB_IMPL "${PROJECT_ROOT_PATH}/files/src/shared-da
 # Merge lists
 set(
     PROJECT_HEADER_FILES 
+    ${H_FILES_HOLIDAY_LIB}
+    ${H_FILES_HOLIDAY_LIB_IMPL}
     ${H_FILES_APP_DOMAIN_LIB}
     ${H_FILES_APP_DOMAIN_LIB_IMPL}
     ${H_FILES_APP_ENUMS_LIB}
@@ -141,6 +151,8 @@ set(
 
 set(
     PROJECT_SOURCE_FILES 
+    ${S_FILES_HOLIDAY_LIB}
+    ${S_FILES_HOLIDAY_LIB_IMPL}
     ${S_FILES_APP_DOMAIN_LIB}
     ${S_FILES_APP_DOMAIN_LIB_IMPL}
     ${S_FILES_APP_ENUMS_LIB}

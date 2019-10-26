@@ -15,7 +15,7 @@
 #include <memory>
 
 namespace ezored{
-namespace agricola{
+namespace holiday{
 
     void FeriadoRepositoryImpl::salvar(std::string json){
         Feriado feriado = FeriadoParser::parseJsonParaObjeto(json);
@@ -49,7 +49,7 @@ namespace agricola{
         }
     }
 
-    std::vector<Feriado> FeriadoRepository::findByPais(std::string siglaPais){
+    std::vector<Feriado> FeriadoRepository::findByPais(const std::string &siglaPais){
         auto sql = "SELECT * FROM FERIADO where sigla_pais = :siglaPais";
         auto application = std::static_pointer_cast<core::ApplicationCoreImpl>(core::ApplicationCore::shared());
         auto db = application->getDB();
