@@ -19,6 +19,26 @@ CJNIEXPORT void JNICALL Java_com_ezored_time_DateTime_00024CppProxy_nativeDestro
     } JNI_TRANSLATE_EXCEPTIONS_RETURN(jniEnv, )
 }
 
+CJNIEXPORT jobject JNICALL Java_com_ezored_time_DateTime_00024CppProxy_getDateTimeFromStringFormat(JNIEnv* jniEnv, jobject /*this*/, jstring j_value, jstring j_dateFormat)
+{
+    try {
+        DJINNI_FUNCTION_PROLOGUE0(jniEnv);
+        auto r = ::ezored::time::DateTime::getDateTimeFromStringFormat(::djinni::String::toCpp(jniEnv, j_value),
+                                                                       ::djinni::String::toCpp(jniEnv, j_dateFormat));
+        return ::djinni::release(::djinni::Date::fromCpp(jniEnv, r));
+    } JNI_TRANSLATE_EXCEPTIONS_RETURN(jniEnv, 0 /* value doesn't matter */)
+}
+
+CJNIEXPORT jstring JNICALL Java_com_ezored_time_DateTime_00024CppProxy_getStringFromDateTimeFormat(JNIEnv* jniEnv, jobject /*this*/, jobject j_value, jstring j_dateFormat)
+{
+    try {
+        DJINNI_FUNCTION_PROLOGUE0(jniEnv);
+        auto r = ::ezored::time::DateTime::getStringFromDateTimeFormat(::djinni::Date::toCpp(jniEnv, j_value),
+                                                                       ::djinni::String::toCpp(jniEnv, j_dateFormat));
+        return ::djinni::release(::djinni::String::fromCpp(jniEnv, r));
+    } JNI_TRANSLATE_EXCEPTIONS_RETURN(jniEnv, 0 /* value doesn't matter */)
+}
+
 CJNIEXPORT jobject JNICALL Java_com_ezored_time_DateTime_00024CppProxy_getDateTimeFromString(JNIEnv* jniEnv, jobject /*this*/, jstring j_value)
 {
     try {

@@ -1,5 +1,7 @@
 date_time = interface +c {
 
+    static get_date_time_from_string_format(value: string, date_format: string): date;
+    static get_string_from_date_time_format(value: date, date_format: string): string;
     static get_date_time_from_string(value: string): date;
     static get_string_from_date_time(value: date): string;
     
